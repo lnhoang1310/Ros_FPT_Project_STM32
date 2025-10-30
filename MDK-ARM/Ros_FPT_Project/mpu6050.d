@@ -31,8 +31,8 @@ ros_fpt_project\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim
 ros_fpt_project\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 ros_fpt_project\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 ros_fpt_project\mpu6050.o: ../Robot/robot.h
-ros_fpt_project\mpu6050.o: ..\StepMotor\step_motor.h
-ros_fpt_project\mpu6050.o: ..\Encoder_AS5600\as5600.h
+ros_fpt_project\mpu6050.o: ../StepMotor/step_motor.h
+ros_fpt_project\mpu6050.o: ../Encoder_AS5600/as5600.h
 ros_fpt_project\mpu6050.o: ../Core/Inc/main.h
 ros_fpt_project\mpu6050.o: ../I2C/i2c.h
 ros_fpt_project\mpu6050.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

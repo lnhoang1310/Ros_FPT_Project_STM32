@@ -44,8 +44,8 @@ void uart_receive_data(uint8_t data_rx)
 void uart_handle(Robot_Typedef* robot){
 	if(flag_cpltReceive){
 		flag_cpltReceive = 0;
-		uint8_t flag_left = 0;
-		uint8_t flag_right = 0;
+		int8_t speed_left = 0;
+		int8_t speed_right = 0;
 		uint8_t state = 0;
 		uint8_t index = 0;
 		char *token = strtok((char *)uart_buff, " ");
@@ -55,16 +55,17 @@ void uart_handle(Robot_Typedef* robot){
 			token = strtok(NULL, " ");
 		}
 
-		if(!response_uart(argv, &flag_left, &flag_right, &state)) return;
+		if(!response_uart(argv, &speed_left, &speed_right, &state)) return;
+		
 		if(state) robot->state = ROBOT_RUN;
 		else robot->state = ROBOT_STOP;
 
 		setpoint_left = (speed_left != 0) ? map_float((float)speed_left, 0, 100, MIN_RPM, MAX_RPM) : 0;
 		setpoint_right = (speed_right != 0) ? map_float((float)speed_right, 0, 100, MIN_RPM, MAX_RPM) : 0;
 		
-		if (flag_left)
+		if (speed_left < 0)
 			setpoint_left = setpoint_left * (-1.0f);
-		if (flag_right)
+		if (speed_right < 0)
 			setpoint_right = setpoint_right * (-1.0f);
 		robot_control(robot, setpoint_left, setpoint_right);
 	}
