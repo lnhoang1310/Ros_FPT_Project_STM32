@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Ros_FPT_Project\Ros_FPT_Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Ros_FPT_Project\Ros_FPT_Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Oct 31 01:40:48 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Oct 31 02:25:55 2025
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -962,23 +962,25 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
 </UL>
 
-<P><STRONG><a name="[9e]"></a>AS5600_CalVelocity</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, as5600.o(i.AS5600_CalVelocity))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = AS5600_CalVelocity &rArr; AS5600_ReadRawAngle &rArr; i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
+<P><STRONG><a name="[9e]"></a>AS5600_CalVelocity</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, as5600.o(i.AS5600_CalVelocity))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = AS5600_CalVelocity &rArr; AS5600_ReadRawAngle &rArr; i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_ReadRawAngle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calculate_Velocity
+<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calculate_Velocity
 </UL>
 
-<P><STRONG><a name="[a4]"></a>AS5600_Init</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, as5600.o(i.AS5600_Init))
+<P><STRONG><a name="[a6]"></a>AS5600_Init</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, as5600.o(i.AS5600_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = AS5600_Init &rArr; AS5600_ReadRawAngle &rArr; i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_ReadRawAngle
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -990,10 +992,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[a9]"></a>Calculate_Velocity</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, robot.o(i.Calculate_Velocity))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Calculate_Velocity &rArr; AS5600_CalVelocity &rArr; AS5600_ReadRawAngle &rArr; i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
+<P><STRONG><a name="[aa]"></a>Calculate_Velocity</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, robot.o(i.Calculate_Velocity))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Calculate_Velocity &rArr; AS5600_CalVelocity &rArr; AS5600_ReadRawAngle &rArr; i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_CalVelocity
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
@@ -1002,7 +1004,7 @@ Global Symbols
 <P><STRONG><a name="[1f]"></a>DMA1_Channel7_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.DMA1_Channel7_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = DMA1_Channel7_IRQHandler &rArr; HAL_DMA_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_IRQHandler
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
@@ -1025,7 +1027,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
 </UL>
 
-<P><STRONG><a name="[aa]"></a>HAL_DMA_IRQHandler</STRONG> (Thumb, 316 bytes, Stack size 40 bytes, stm32f1xx_hal_dma.o(i.HAL_DMA_IRQHandler))
+<P><STRONG><a name="[ab]"></a>HAL_DMA_IRQHandler</STRONG> (Thumb, 316 bytes, Stack size 40 bytes, stm32f1xx_hal_dma.o(i.HAL_DMA_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_DMA_IRQHandler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel7_IRQHandler
@@ -1037,18 +1039,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 </UL>
 
-<P><STRONG><a name="[ab]"></a>HAL_DMA_Start_IT</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT))
+<P><STRONG><a name="[ac]"></a>HAL_DMA_Start_IT</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetConfig
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_DMA
 </UL>
 
-<P><STRONG><a name="[ad]"></a>HAL_Delay</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, stm32f1xx_hal.o(i.HAL_Delay))
+<P><STRONG><a name="[ae]"></a>HAL_Delay</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, stm32f1xx_hal.o(i.HAL_Delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HAL_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_address
@@ -1081,7 +1083,7 @@ Global Symbols
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_address
 </UL>
 
-<P><STRONG><a name="[ae]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_GetTick))
+<P><STRONG><a name="[a2]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_GetTick))
 <BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnTXEFlagUntilTimeout
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnRXNEFlagUntilTimeout
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnMasterAddressFlagUntilTimeout
@@ -1089,9 +1091,10 @@ Global Symbols
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnBTFFlagUntilTimeout
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_CalVelocity
 </UL>
 
 <P><STRONG><a name="[af]"></a>HAL_I2C_Init</STRONG> (Thumb, 376 bytes, Stack size 16 bytes, stm32f1xx_hal_i2c.o(i.HAL_I2C_Init))
@@ -1109,7 +1112,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnRXNEFlagUntilTimeout
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnFlagUntilTimeout
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryRead
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Read_All_Fast
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Init
@@ -1122,7 +1125,7 @@ Global Symbols
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnFlagUntilTimeout
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnBTFFlagUntilTimeout
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryWrite
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Init
 </UL>
@@ -1191,7 +1194,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
@@ -1212,7 +1215,7 @@ Global Symbols
 <P><STRONG><a name="[c4]"></a>HAL_RCC_OscConfig</STRONG> (Thumb, 778 bytes, Stack size 40 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_RCC_OscConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
@@ -1370,7 +1373,7 @@ Global Symbols
 <LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; MPU6050_Read_All_Fast &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Read_All_Fast
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calculate_Velocity
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calculate_Velocity
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 </UL>
@@ -1446,7 +1449,7 @@ Global Symbols
 <P><STRONG><a name="[f5]"></a>HAL_UART_Transmit_DMA</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_Transmit_DMA))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = HAL_UART_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
+<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit
 </UL>
@@ -1480,9 +1483,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = MPU6050_Read_All_Fast &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
@@ -1565,10 +1568,10 @@ Global Symbols
 <P><STRONG><a name="[108]"></a>Stepper_SetSpeedRPM</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, step_motor.o(i.Stepper_SetSpeedRPM))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = Stepper_SetSpeedRPM &rArr; Stepper_Disable &rArr; HAL_TIM_PWM_Stop &rArr; TIM_CCxChannelCmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stepper_Enable
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stepper_Disable
 </UL>
@@ -1671,7 +1674,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a6]"></a>i2c_soft_read_addr8_bytes</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, i2c.o(i.i2c_soft_read_addr8_bytes))
+<P><STRONG><a name="[a8]"></a>i2c_soft_read_addr8_bytes</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, i2c.o(i.i2c_soft_read_addr8_bytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_byte
@@ -1721,14 +1724,14 @@ Global Symbols
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configure_interrupt
 </UL>
 
-<P><STRONG><a name="[a5]"></a>i2c_soft_write_addr8_bytes</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, i2c.o(i.i2c_soft_write_addr8_bytes))
+<P><STRONG><a name="[a7]"></a>i2c_soft_write_addr8_bytes</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, i2c.o(i.i2c_soft_write_addr8_bytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = i2c_soft_write_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_byte
 <LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_stop
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_start
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_Init
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_Init
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_spads_from_nvm
 </UL>
 
@@ -1769,8 +1772,8 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_Init
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_Init
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM4_Init
@@ -1839,7 +1842,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = vl53l0x_read_range_single &rArr; i2c_soft_write_addr8_data8 &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data16
@@ -1918,18 +1921,18 @@ Global Symbols
 <P><STRONG><a name="[13d]"></a>__fpl_fcheck_NaN1</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, fcheck1.o(x$fpl$fcheck1))
 <BR><BR>[Calls]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_return_NaN
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 </UL>
 
 <P><STRONG><a name="[142]"></a>__fpl_fcmp_Inf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, fcmpi.o(x$fpl$fcmpinf), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fcmple
 </UL>
 
-<P><STRONG><a name="[a2]"></a>__aeabi_fdiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv))
+<P><STRONG><a name="[a4]"></a>__aeabi_fdiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fdiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Read_All_Fast
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calculate_Velocity
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calculate_Velocity
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stepper_SetSpeedRPM
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vl53l0x_read_range_single
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_CalVelocity
@@ -1957,10 +1960,11 @@ Global Symbols
 
 <P><STRONG><a name="[17a]"></a>_fflt</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt), UNUSED)
 
-<P><STRONG><a name="[a7]"></a>__aeabi_ui2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$ffltu))
+<P><STRONG><a name="[a3]"></a>__aeabi_ui2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$ffltu))
 <BR><BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_ReadRawAngle
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stepper_SetSpeedRPM
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_delay
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_CalVelocity
 </UL>
 
 <P><STRONG><a name="[17b]"></a>_ffltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$ffltu), UNUSED)
@@ -1978,7 +1982,7 @@ Global Symbols
 
 <P><STRONG><a name="[17c]"></a>__fpl_fcmple_InfNaN</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fleqf.o(x$fpl$fleqf), UNUSED)
 
-<P><STRONG><a name="[a3]"></a>__aeabi_fmul</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
+<P><STRONG><a name="[a5]"></a>__aeabi_fmul</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_ReadRawAngle
@@ -2043,7 +2047,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcheck_NaN1
 </UL>
 
-<P><STRONG><a name="[a8]"></a>__ARM_scalbnf</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, scalbnf.o(x$fpl$scalbnf))
+<P><STRONG><a name="[a9]"></a>__ARM_scalbnf</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, scalbnf.o(x$fpl$scalbnf))
 <BR><BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcheck_NaN1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Read_All_Fast
@@ -2142,7 +2146,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2C_WaitOnBTFFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_IsAcknowledgeFailed
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
 </UL>
@@ -2150,7 +2154,7 @@ Local Symbols
 <P><STRONG><a name="[b3]"></a>I2C_WaitOnFlagUntilTimeout</STRONG> (Thumb, 144 bytes, Stack size 32 bytes, stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = I2C_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryWrite
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryRead
@@ -2161,7 +2165,7 @@ Local Symbols
 <P><STRONG><a name="[f6]"></a>I2C_WaitOnMasterAddressFlagUntilTimeout</STRONG> (Thumb, 188 bytes, Stack size 32 bytes, stm32f1xx_hal_i2c.o(i.I2C_WaitOnMasterAddressFlagUntilTimeout))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryWrite
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryRead
@@ -2170,7 +2174,7 @@ Local Symbols
 <P><STRONG><a name="[b5]"></a>I2C_WaitOnRXNEFlagUntilTimeout</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, stm32f1xx_hal_i2c.o(i.I2C_WaitOnRXNEFlagUntilTimeout))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_WaitOnRXNEFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
 </UL>
@@ -2179,17 +2183,17 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2C_WaitOnTXEFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_IsAcknowledgeFailed
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryWrite
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryRead
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
 </UL>
 
-<P><STRONG><a name="[ac]"></a>DMA_SetConfig</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, stm32f1xx_hal_dma.o(i.DMA_SetConfig))
+<P><STRONG><a name="[ad]"></a>DMA_SetConfig</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, stm32f1xx_hal_dma.o(i.DMA_SetConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = DMA_SetConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
+<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
 </UL>
 
 <P><STRONG><a name="[c1]"></a>__NVIC_SetPriority</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.__NVIC_SetPriority))
@@ -2318,7 +2322,7 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data32
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_spads_from_nvm
 </UL>
@@ -2327,7 +2331,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = init_address &rArr; i2c_soft_write_addr8_data8 &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 </UL>
@@ -2376,7 +2380,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = set_spads_from_nvm &rArr; get_spad_info_from_nvm &rArr; i2c_soft_write_addr8_data8 &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_spad_info_from_nvm
 </UL>
 <BR>[Called By]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_config
@@ -2385,9 +2389,9 @@ Local Symbols
 <P><STRONG><a name="[119]"></a>i2c_soft_delay</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, i2c.o(i.i2c_soft_delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_byte
 <LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_stop
@@ -2408,7 +2412,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data32
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data16
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
 </UL>
 
 <P><STRONG><a name="[11d]"></a>i2c_soft_scl_high</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, i2c.o(i.i2c_soft_scl_high))
@@ -2467,11 +2471,11 @@ Local Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data32
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data16
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
 </UL>
 
 <P><STRONG><a name="[121]"></a>i2c_soft_stop</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, i2c.o(i.i2c_soft_stop))
@@ -2483,11 +2487,11 @@ Local Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data32
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data16
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
 </UL>
 
 <P><STRONG><a name="[11f]"></a>i2c_soft_write_byte</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, i2c.o(i.i2c_soft_write_byte))
@@ -2501,22 +2505,22 @@ Local Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_data8
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_write_addr8_bytes
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data8
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data32
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_data16
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
 </UL>
 
 <P><STRONG><a name="[9f]"></a>AS5600_ReadRawAngle</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, as5600.o(i.AS5600_ReadRawAngle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = AS5600_ReadRawAngle &rArr; i2c_soft_read_addr8_bytes &rArr; i2c_soft_write_byte &rArr; i2c_soft_delay &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_soft_read_addr8_bytes
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_Init
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_Init
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AS5600_CalVelocity
 </UL>
 

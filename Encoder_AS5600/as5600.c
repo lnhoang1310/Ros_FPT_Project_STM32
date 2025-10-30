@@ -45,7 +45,8 @@ AS5600_Status AS5600_Init(AS5600_Typedef *sensor, Soft_I2C_TypeDef *_hi2c, uint1
 }
 float AS5600_CalVelocity(AS5600_Typedef *sensor)
 {
-	float last_angle = sensor->angle;
+	static uint32_t time;
+	static float last_angle = 0.0f;
 	if (AS5600_ReadRawAngle(sensor) != AS5600_OK)
 		return -1;
 
@@ -54,10 +55,12 @@ float AS5600_CalVelocity(AS5600_Typedef *sensor)
 		delta -= 360.0f;
 	if (delta < -180.0f)
 		delta += 360.0f;
-
-	float speed_deg_s = delta / TIME_SAMPLE;
+	
+	float dt = (HAL_GetTick() - time) / 1000.0f;
+	float speed_deg_s = delta / dt;
 	float speed_rad_s = speed_deg_s * PI / 180.0f;
 	float speed_m_s = speed_rad_s * WHEEL_RADIUS;
-
+	last_angle = sensor->angle;
+	time = HAL_GetTick();
 	return fabs(speed_m_s);
 }
