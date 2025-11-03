@@ -26,7 +26,18 @@ Kalman_t KalmanYaw = {
 		.Q_bias = 0.003f,
 		.R_measure = 0.03f
 };
-	
+
+typedef struct{
+	float y_prev;
+}Filter;
+Filter gz_filter = {0};
+
+float LowPassFilter(Filter* filter, float value){
+	float y = 0.5 * value + 0.5 * filter->y_prev;
+	filter->y_prev =  y;
+	return y;
+}
+
 MPU6050_Status MPU6050_Init(MPU6050_t* mpu, I2C_HandleTypeDef *I2Cx) {
 	mpu->hi2c = I2Cx;
     uint8_t Data;
@@ -154,8 +165,8 @@ MPU6050_Status MPU6050_Read_All_Fast(MPU6050_t *mpu) {
     mpu->Temperature = (float) ((int16_t) temp / 340.0f + 36.53f);
     mpu->Gx = mpu->Gyro_X_RAW / 131.0f;
     mpu->Gy = mpu->Gyro_Y_RAW / 131.0f;
-	if(robot.state == ROBOT_STOP) mpu->Gz = 0.0f;
-	else mpu->Gz = mpu->Gyro_Z_RAW / 131.0f;
+	if(robot.state == ROBOT_STOP || (robot.motorLeft->speed == robot.motorRight->speed && (robot.v_left*robot.v_right > 0))) mpu->Gz = 0.0f;
+	else mpu->Gz = LowPassFilter(&gz_filter, mpu->Gyro_Z_RAW / 131.0f);
 //	float dt = (float) (HAL_GetTick() - timer) / 1000.0f;
 //    timer = HAL_GetTick();
 //    float roll_sqrt = sqrtf(mpu->Accel_X_RAW * mpu->Accel_X_RAW + mpu->Accel_Z_RAW * mpu->Accel_Z_RAW);

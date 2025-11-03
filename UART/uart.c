@@ -70,7 +70,6 @@ void uart_handle(Robot_Typedef* robot){
 		if (speed_right <= 0) robot->motorRight->direction = FORWARD;
 		else robot->motorRight->direction = BACKWARD;
 		robot_control(robot, setpoint_left, setpoint_right);
-		test = HAL_GPIO_ReadPin(robot->motorRight->ENA_Port, robot->motorRight->ENA_Pin);
 	}
 }
 
