@@ -127,7 +127,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 			flag_error = 10;
 			transmit("Get data from MPU6050 error!\n");
 		}
-		//Calculate_Velocity(&robot);
+		Calculate_Velocity(&robot);
 		//transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz);
 	}
 }
@@ -218,8 +218,14 @@ int main(void)
 	Servo_Init(&servo2, &htim4, TIM_CHANNEL_2);
 
 	// Init Encoder
-	AS5600_Init(&encoder_left, &soft_i2c_encoder_left, AS5600_I2C_SLAVE_ADDRESS);
-	AS5600_Init(&encoder_right, &soft_i2c_encoder_right, AS5600_I2C_SLAVE_ADDRESS);
+	while(AS5600_Init(&encoder_left, &soft_i2c_encoder_left, AS5600_I2C_SLAVE_ADDRESS)  != AS5600_OK){
+		flag_error = 7;
+		transmit("Encoder Left Init Fail\n");
+	}
+	while(AS5600_Init(&encoder_right, &soft_i2c_encoder_right, AS5600_I2C_SLAVE_ADDRESS) != AS5600_OK){
+		flag_error = 8;
+		transmit("Encoder Right Init Fail\n");
+	}
 	
 	// Init Step Motor
 	Stepper_Init(&motor_left, &htim1, TIM_CHANNEL_4, &encoder_left, Motor_Left_DIR_GPIO_Port, Motor_Left_DIR_Pin, Motor_Left_EN_GPIO_Port, Motor_Left_EN_Pin);

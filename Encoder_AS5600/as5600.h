@@ -13,10 +13,10 @@
 #define AS5600_STATUS_ML (1 << 4) // Magnet too weak
 #define AS5600_STATUS_MH (1 << 3) // Magnet too strong
 
-#define TIME_SAMPLE 0.12f
+#define TIME_SAMPLE 0.04f
 
 #define PI 3.14159265359f
-#define WHEEL_RADIUS 0.05f
+#define WHEEL_RADIUS 0.045f
 
 typedef enum
 {
