@@ -154,8 +154,8 @@ MPU6050_Status MPU6050_Read_All_Fast(MPU6050_t *mpu) {
     mpu->Temperature = (float) ((int16_t) temp / 340.0f + 36.53f);
     mpu->Gx = mpu->Gyro_X_RAW / 131.0f;
     mpu->Gy = mpu->Gyro_Y_RAW / 131.0f;
-    mpu->Gz = mpu->Gyro_Z_RAW / 131.0f;
-	
+	if(robot.state == ROBOT_STOP) mpu->Gz = 0.0f;
+	else mpu->Gz = mpu->Gyro_Z_RAW / 131.0f;
 //	float dt = (float) (HAL_GetTick() - timer) / 1000.0f;
 //    timer = HAL_GetTick();
 //    float roll_sqrt = sqrtf(mpu->Accel_X_RAW * mpu->Accel_X_RAW + mpu->Accel_Z_RAW * mpu->Accel_Z_RAW);

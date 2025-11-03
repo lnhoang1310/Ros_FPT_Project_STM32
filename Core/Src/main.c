@@ -128,7 +128,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 			transmit("Get data from MPU6050 error!\n");
 		}
 		Calculate_Velocity(&robot);
-		//transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz);
+		transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz);
 	}
 }
 /* USER CODE END 0 */
