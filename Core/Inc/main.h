@@ -59,14 +59,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Motor_Right_DIR_Pin GPIO_PIN_14
+#define Motor_Right_DIR_GPIO_Port GPIOC
+#define Motor_Right_EN_Pin GPIO_PIN_15
+#define Motor_Right_EN_GPIO_Port GPIOC
 #define Motor_Left_EN_Pin GPIO_PIN_0
 #define Motor_Left_EN_GPIO_Port GPIOA
 #define Motor_Left_DIR_Pin GPIO_PIN_1
 #define Motor_Left_DIR_GPIO_Port GPIOA
-#define Motor_Right_DIR_Pin GPIO_PIN_4
-#define Motor_Right_DIR_GPIO_Port GPIOA
-#define Motor_Right_EN_Pin GPIO_PIN_5
-#define Motor_Right_EN_GPIO_Port GPIOA
 #define XSHUT_SENSOR_LEFT_Pin GPIO_PIN_6
 #define XSHUT_SENSOR_LEFT_GPIO_Port GPIOA
 #define XSHUT_SENSOR_HALF_LEFT_Pin GPIO_PIN_7

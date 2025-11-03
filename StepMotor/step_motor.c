@@ -12,7 +12,7 @@ void Stepper_Init(StepperMotor *motor, TIM_HandleTypeDef *htim, uint32_t channel
 	motor->ENA_Port = en_port;
 	motor->ENA_Pin = en_pin;
 	motor->state = INACTIVE;
-	motor->steps_per_round = FULL_STEP_MODE;
+	motor->steps_per_round = STEP_MODE;
 	motor->speed = 0.0f;
 	for (uint8_t i = 0; i < NUMS_OF_MOTOR; ++i){
 		if (motors[i] == motor)
@@ -43,8 +43,6 @@ void Stepper_SetDirection(StepperMotor *motor){
 
 void Stepper_SetSpeedRPM(StepperMotor *motor){
 	if (motor->speed < MIN_RPM){
-		motor->htim->Instance->ARR = 0;
-		motor->htim->Instance->CCR1 = 0;
 		Stepper_Disable(motor);
 		return;
 	}
@@ -54,7 +52,7 @@ void Stepper_SetSpeedRPM(StepperMotor *motor){
 		freq = TIMER_FREQ;
 	uint32_t arr = (uint32_t)(TIMER_FREQ / freq) - 1;
 	motor->htim->Instance->ARR = (arr >= 2) ? arr : 2;
-	motor->htim->Instance->CCR1 = arr / 2;
+	__HAL_TIM_SET_COMPARE(motor->htim, motor->Channel, arr / 2);
 	if (motor->state == INACTIVE){
 		Stepper_Enable(motor);
 	}
@@ -65,8 +63,7 @@ void Stepper_Control(StepperMotor *motor){
 	Stepper_SetSpeedRPM(motor);
 }
 
-void Stepper_Setup(StepperMotor *motor, Direct_State _direct, float rpm){
-	motor->direction = _direct;
+void Stepper_Setup(StepperMotor *motor, float rpm){
 	motor->speed = rpm;
 	Stepper_Control(motor);
 }

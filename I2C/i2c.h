@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define I2C_SOFT_DELAY_US 1.25f		// Delay for 100kHz I2C
+#define I2C_SOFT_DELAY_US 1.0f
 
 typedef struct
 {

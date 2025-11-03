@@ -10,6 +10,10 @@ float setpoint_left;
 float setpoint_right;
 char *argv[5];
 uint8_t flag_data_error = 0;
+int8_t speed_left = 0;
+int8_t speed_right = 0;
+uint8_t state = 0;
+GPIO_PinState test;
 
 float map_float(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -44,9 +48,7 @@ void uart_receive_data(uint8_t data_rx)
 void uart_handle(Robot_Typedef* robot){
 	if(flag_cpltReceive){
 		flag_cpltReceive = 0;
-		int8_t speed_left = 0;
-		int8_t speed_right = 0;
-		uint8_t state = 0;
+		
 		uint8_t index = 0;
 		char *token = strtok((char *)uart_buff, " ");
 		while (token != NULL)
@@ -60,14 +62,15 @@ void uart_handle(Robot_Typedef* robot){
 		if(state) robot->state = ROBOT_RUN;
 		else robot->state = ROBOT_STOP;
 
-		setpoint_left = (speed_left != 0) ? map_float((float)speed_left, 0, 100, MIN_RPM, MAX_RPM) : 0;
-		setpoint_right = (speed_right != 0) ? map_float((float)speed_right, 0, 100, MIN_RPM, MAX_RPM) : 0;
+		setpoint_left = (speed_left != 0) ? map_float(fabsf((float)speed_left), 0, 100, MIN_RPM, MAX_RPM) : 0;
+		setpoint_right = (speed_right != 0) ? map_float(fabsf((float)speed_right), 0, 100, MIN_RPM, MAX_RPM) : 0;
 		
-		if (speed_left < 0)
-			setpoint_left = setpoint_left * (-1.0f);
-		if (speed_right < 0)
-			setpoint_right = setpoint_right * (-1.0f);
+		if (speed_left < 0) robot->motorLeft->direction = BACKWARD;
+		else robot->motorLeft->direction = FORWARD;
+		if (speed_right <= 0) robot->motorRight->direction = FORWARD;
+		else robot->motorRight->direction = BACKWARD;
 		robot_control(robot, setpoint_left, setpoint_right);
+		test = HAL_GPIO_ReadPin(robot->motorRight->ENA_Port, robot->motorRight->ENA_Pin);
 	}
 }
 

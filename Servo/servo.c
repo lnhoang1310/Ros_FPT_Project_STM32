@@ -31,7 +31,6 @@ void Servo_Init(Servo_TypeDef *servo, TIM_HandleTypeDef* htim, uint32_t channel)
 	servo->htim =  htim;
 	servo->Channel = channel;
 	servo->Angle = 0;
-	htim->Instance->PSC = 63;
 	htim->Instance->ARR = 20000 - 1;
 	HAL_TIM_PWM_Start(servo->htim, servo->Channel);
 }	

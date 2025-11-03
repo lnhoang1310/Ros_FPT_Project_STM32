@@ -16,15 +16,13 @@ void robot_control(Robot_Typedef *robot, float speed_left, float speed_right)
 {
 	if (robot->state == ROBOT_RUN)
 	{
-		Direct_State direct_left = (speed_left < 0) ? BACKWARD : FORWARD;
-		Direct_State direct_right = (speed_right < 0) ? FORWARD : BACKWARD;
-		Stepper_Setup(robot->motorLeft, direct_left, fabs(speed_left));
-		Stepper_Setup(robot->motorRight, direct_right, fabs(speed_right));
+		Stepper_Setup(robot->motorLeft, speed_left);
+		Stepper_Setup(robot->motorRight, speed_right);
 	}
 	else if (robot->state == ROBOT_STOP)
 	{
-		Stepper_Setup(robot->motorLeft, robot->motorLeft->direction, 0);
-		Stepper_Setup(robot->motorRight, robot->motorRight->direction, 0);
+		Stepper_Setup(robot->motorLeft, 0);
+		Stepper_Setup(robot->motorRight, 0);
 	}
 }
 

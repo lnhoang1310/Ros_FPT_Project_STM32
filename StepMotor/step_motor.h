@@ -4,10 +4,10 @@
 #include "stm32f1xx_hal.h"
 #include "as5600.h"
 
-#define MIN_RPM 40
-#define MAX_RPM 1000
+#define MIN_RPM 20
+#define MAX_RPM 200
 #define NUMS_OF_MOTOR 2
-#define FULL_STEP_MODE 400
+#define STEP_MODE 3200
 #define TIMER_FREQ 1000000
 #define RATIO_MOTOR 5.18f
 
@@ -42,7 +42,7 @@ void Stepper_Init(StepperMotor *motor, TIM_HandleTypeDef *htim, uint32_t Channel
 				  GPIO_TypeDef *DIR_Port, uint16_t DIR_Pin,
 				  GPIO_TypeDef *ENA_Port, uint16_t ENA_Pin);
 
-void Stepper_Setup(StepperMotor *motor, Direct_State _direct, float rpm);
+void Stepper_Setup(StepperMotor *motor, float rpm);
 void Stepper_Enable(StepperMotor *motor);
 void Stepper_Disable(StepperMotor *motor);
 void Stepper_SetDirection(StepperMotor *motor);

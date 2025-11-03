@@ -67,8 +67,7 @@ StepperMotor motor_right;
 AS5600_Typedef encoder_left;
 AS5600_Typedef encoder_right;
 
-Soft_I2C_TypeDef soft_i2c1;
-Soft_I2C_TypeDef soft_i2c2;
+Soft_I2C_TypeDef soft_i2c_distance;
 Soft_I2C_TypeDef soft_i2c_encoder_left;
 Soft_I2C_TypeDef soft_i2c_encoder_right;
 
@@ -117,6 +116,7 @@ HAL_StatusTypeDef transmit(const char *format, ...)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart){
 	if(huart->Instance == huart2.Instance){
 		uart_receive_data(data_rx);
+		uart_handle(&robot);
 		HAL_UART_Receive_IT(huart, &data_rx, 1);
 	}
 }
@@ -127,8 +127,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 			flag_error = 10;
 			transmit("Get data from MPU6050 error!\n");
 		}
-		Calculate_Velocity(&robot);
-		transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz);
+		//Calculate_Velocity(&robot);
+		//transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz);
 	}
 }
 /* USER CODE END 0 */
@@ -184,29 +184,30 @@ int main(void)
 		Error_Handler();
 	}
 	// Init I2C Soft
-	i2c_soft_init(&soft_i2c1, SOFT_I2C1_SCL_GPIO_Port, SOFT_I2C1_SCL_Pin, SOFT_I2C1_SDA_GPIO_Port,SOFT_I2C1_SDA_Pin);
-	i2c_soft_init(&soft_i2c2, SOFT_I2C2_SCL_GPIO_Port, SOFT_I2C2_SCL_Pin, SOFT_I2C2_SDA_GPIO_Port,SOFT_I2C2_SDA_Pin);
+	i2c_soft_init(&soft_i2c_distance, SOFT_I2C1_SCL_GPIO_Port, SOFT_I2C1_SCL_Pin, SOFT_I2C1_SDA_GPIO_Port, SOFT_I2C1_SDA_Pin);
+	i2c_soft_init(&soft_i2c_encoder_left, SOFT_I2C2_SCL_GPIO_Port, SOFT_I2C2_SCL_Pin, SOFT_I2C2_SDA_GPIO_Port, SOFT_I2C2_SDA_Pin);
+	i2c_soft_init(&soft_i2c_encoder_right, SOFT_I2C3_SCL_GPIO_Port, SOFT_I2C3_SCL_Pin, SOFT_I2C3_SDA_GPIO_Port, SOFT_I2C3_SDA_Pin);
 	
 	// Init Distance Sensor VL53L0X
-	if(!vl53l0x_init(&sensor_left, &soft_i2c1, XSHUT_SENSOR_LEFT_GPIO_Port, XSHUT_SENSOR_LEFT_Pin, LEFT, 0)){
+	if(!vl53l0x_init(&sensor_left, &soft_i2c_distance, XSHUT_SENSOR_LEFT_GPIO_Port, XSHUT_SENSOR_LEFT_Pin, LEFT, 0)){
 		flag_error = 3;
 		transmit("Distance Sensor Front Init Fail!\n");
 		Error_Handler();
 	}
 	flag_error = 0;
-	if(!vl53l0x_init(&sensor_half_left, &soft_i2c1, XSHUT_SENSOR_HALF_LEFT_GPIO_Port, XSHUT_SENSOR_HALF_LEFT_Pin, RIGHT, 0)){
+	if(!vl53l0x_init(&sensor_half_left, &soft_i2c_distance, XSHUT_SENSOR_HALF_LEFT_GPIO_Port, XSHUT_SENSOR_HALF_LEFT_Pin, RIGHT, 0)){
 		flag_error = 4;
 		transmit("Distance Sensor Behind Init Fail!\n");
 		Error_Handler();
 	}
 	flag_error = 0;
-	if(!vl53l0x_init(&sensor_half_right, &soft_i2c2, XSHUT_SENSOR_HALF_RIGHT_GPIO_Port, XSHUT_SENSOR_HALF_RIGHT_Pin, HALF_LEFT, 0)){
+	if(!vl53l0x_init(&sensor_half_right, &soft_i2c_distance, XSHUT_SENSOR_HALF_RIGHT_GPIO_Port, XSHUT_SENSOR_HALF_RIGHT_Pin, HALF_LEFT, 0)){
 		flag_error = 5;
 		transmit("Distance Sensor Left Init Fail!\n");
 		Error_Handler();
 	}
 	flag_error = 0;
-	if(!vl53l0x_init(&sensor_right, &soft_i2c2, XSHUT_SENSOR_RIGHT_GPIO_Port, XSHUT_SENSOR_RIGHT_Pin, HALF_RIGHT, 0)){
+	if(!vl53l0x_init(&sensor_right, &soft_i2c_distance, XSHUT_SENSOR_RIGHT_GPIO_Port, XSHUT_SENSOR_RIGHT_Pin, HALF_RIGHT, 0)){
 		flag_error = 6;
 		transmit("Distance Sensor Right Init Fail!\n");
 		Error_Handler();
@@ -230,7 +231,6 @@ int main(void)
 	// Init Periph System
 	HAL_TIM_Base_Start_IT(&htim3);
 	HAL_UART_Receive_IT(&huart2, &data_rx, 1);
-
 	
   /* USER CODE END 2 */
 
@@ -365,7 +365,7 @@ static void MX_TIM1_Init(void)
   htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
   {
     Error_Handler();
@@ -427,7 +427,7 @@ static void MX_TIM2_Init(void)
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 65535;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
@@ -613,13 +613,17 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Motor_Left_EN_Pin|Motor_Left_DIR_Pin|Motor_Right_DIR_Pin|Motor_Right_EN_Pin
-                          |XSHUT_SENSOR_LEFT_Pin|XSHUT_SENSOR_HALF_LEFT_Pin|SOFT_I2C3_SCL_Pin|SOFT_I2C3_SDA_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, Motor_Right_DIR_Pin|Motor_Right_EN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, Motor_Left_EN_Pin|Motor_Left_DIR_Pin|XSHUT_SENSOR_LEFT_Pin|XSHUT_SENSOR_HALF_LEFT_Pin
+                          |SOFT_I2C3_SCL_Pin|SOFT_I2C3_SDA_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, XSHUT_SENSOR_HALF_RIGHT_Pin|XSHUT_SENSOR_RIGHT_Pin, GPIO_PIN_RESET);
@@ -627,10 +631,15 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SOFT_I2C2_SCL_Pin|SOFT_I2C2_SDA_Pin|SOFT_I2C1_SCL_Pin|SOFT_I2C1_SDA_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pins : Motor_Left_EN_Pin Motor_Left_DIR_Pin Motor_Right_DIR_Pin Motor_Right_EN_Pin
-                           XSHUT_SENSOR_LEFT_Pin XSHUT_SENSOR_HALF_LEFT_Pin */
-  GPIO_InitStruct.Pin = Motor_Left_EN_Pin|Motor_Left_DIR_Pin|Motor_Right_DIR_Pin|Motor_Right_EN_Pin
-                          |XSHUT_SENSOR_LEFT_Pin|XSHUT_SENSOR_HALF_LEFT_Pin;
+  /*Configure GPIO pins : Motor_Right_DIR_Pin Motor_Right_EN_Pin */
+  GPIO_InitStruct.Pin = Motor_Right_DIR_Pin|Motor_Right_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Motor_Left_EN_Pin Motor_Left_DIR_Pin XSHUT_SENSOR_LEFT_Pin XSHUT_SENSOR_HALF_LEFT_Pin */
+  GPIO_InitStruct.Pin = Motor_Left_EN_Pin|Motor_Left_DIR_Pin|XSHUT_SENSOR_LEFT_Pin|XSHUT_SENSOR_HALF_LEFT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
