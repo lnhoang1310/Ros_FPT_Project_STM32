@@ -35,6 +35,7 @@ ros_fpt_project\response.o: ../Encoder_AS5600/as5600.h
 ros_fpt_project\response.o: ../Core/Inc/main.h
 ros_fpt_project\response.o: ../I2C/i2c.h
 ros_fpt_project\response.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+ros_fpt_project\response.o: ../Servo/servo.h
 ros_fpt_project\response.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ros_fpt_project\response.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ros_fpt_project\response.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

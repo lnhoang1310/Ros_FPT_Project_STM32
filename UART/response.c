@@ -4,7 +4,7 @@
 #include "stdio.h"
 #include "math.h"
 
-static int8_t get_speed(char *data)
+static int8_t get_data(char *data)
 {
 	uint8_t flag = 0;
 	uint8_t count_minus = 0;
@@ -24,17 +24,19 @@ static int8_t get_speed(char *data)
 	return speed;
 }
 
-static void get_info_cmd(char **argv, int8_t* speed_left, int8_t* speed_right){
-	*speed_left = get_speed(argv[0]);
-	*speed_right = get_speed(argv[1]);
+static void get_info_cmd(char **argv, int8_t* speed_left, int8_t* speed_right, uint8_t* servo_number){
+	*speed_left = get_data(argv[0]);
+	*speed_right = get_data(argv[1]);
+	servo_number[0] = get_data(argv[2]);
+	servo_number[1] = get_data(argv[3]);
 }
 
-uint8_t response_uart(char **argv, int8_t* speed_left, int8_t* speed_right, uint8_t* state){
-	get_info_cmd(argv, speed_left, speed_right);
+uint8_t response_uart(char **argv, int8_t* speed_left, int8_t* speed_right, uint8_t* state, uint8_t* servo_number){
+	get_info_cmd(argv, speed_left, speed_right, servo_number);
 	//if(*speed_left == speed_left_prev && *speed_right == speed_right_prev) return 0;
 	if(*speed_left == 0 && *speed_right == 0) *state = 0;
 	else *state = 1;
-	if (*speed_left > 100 || *speed_right > 100 || *speed_left < -100 || *speed_right < -100)
+	if (*speed_left > 100 || *speed_right > 100 || *speed_left < -100 || *speed_right < -100 || *servo_number > 2)
 		return 0;
 	return 1;
 }

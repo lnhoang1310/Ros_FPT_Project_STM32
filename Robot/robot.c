@@ -2,8 +2,9 @@
 #include "main.h"
 #include "math.h"
 
-void robot_init(Robot_Typedef *robot, StepperMotor *_motorLeft, StepperMotor *_motorRight)
+void robot_init(Robot_Typedef *robot, Servo_TypeDef** servo_list, StepperMotor *_motorLeft, StepperMotor *_motorRight)
 {
+	robot->servo_list = servo_list;
 	robot->motorLeft = _motorLeft;
 	robot->motorRight = _motorRight;
 	robot->v_left = 0.0f;

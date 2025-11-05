@@ -32,12 +32,12 @@ ros_fpt_project\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 ros_fpt_project\main.o: ../Distance_Sensor/vl53l0x.h
 ros_fpt_project\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 ros_fpt_project\main.o: ../I2C/i2c.h
-ros_fpt_project\main.o: ../Servo/servo.h
 ros_fpt_project\main.o: ../MPU6050/mpu6050.h
 ros_fpt_project\main.o: ../UART/uart.h
 ros_fpt_project\main.o: ../Robot/robot.h
 ros_fpt_project\main.o: ../StepMotor/step_motor.h
 ros_fpt_project\main.o: ../Encoder_AS5600/as5600.h
+ros_fpt_project\main.o: ../Servo/servo.h
 ros_fpt_project\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ros_fpt_project\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ros_fpt_project\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

@@ -22,7 +22,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "vl53l0x.h"
-#include "servo.h"
 #include "i2c.h"
 #include "mpu6050.h"
 #include "uart.h"
@@ -128,7 +127,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 			transmit("Get data from MPU6050 error!\n");
 		}
 		Calculate_Velocity(&robot);
-		transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz);
+		transmit("%.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f\n", robot.v_left, robot.v_right, mpu.Ax, mpu.Ay, mpu.Az, mpu.Gx, mpu.Gy, mpu.Gz, 
+		sensor_left.distance_m, sensor_half_left.distance_m, sensor_half_right.distance_m, sensor_right.distance_m);
 	}
 }
 /* USER CODE END 0 */
@@ -232,7 +232,7 @@ int main(void)
 	Stepper_Init(&motor_right, &htim2, TIM_CHANNEL_1, &encoder_right, Motor_Right_DIR_GPIO_Port, Motor_Right_DIR_Pin, Motor_Right_EN_GPIO_Port, Motor_Right_EN_Pin);
 	
 	// Init Robot
-	robot_init(&robot, &motor_left, &motor_right);
+	robot_init(&robot, servo_list, &motor_left, &motor_right);
 	
 	// Init Periph System
 	HAL_TIM_Base_Start_IT(&htim3);

@@ -35,6 +35,7 @@ ros_fpt_project\uart.o: ../Encoder_AS5600/as5600.h
 ros_fpt_project\uart.o: ../Core/Inc/main.h
 ros_fpt_project\uart.o: ../I2C/i2c.h
 ros_fpt_project\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+ros_fpt_project\uart.o: ../Servo/servo.h
 ros_fpt_project\uart.o: ..\UART\response.h
 ros_fpt_project\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ros_fpt_project\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

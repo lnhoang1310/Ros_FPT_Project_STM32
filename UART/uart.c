@@ -10,10 +10,6 @@ float setpoint_left;
 float setpoint_right;
 char *argv[5];
 uint8_t flag_data_error = 0;
-int8_t speed_left = 0;
-int8_t speed_right = 0;
-uint8_t state = 0;
-GPIO_PinState test;
 
 float map_float(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -48,7 +44,10 @@ void uart_receive_data(uint8_t data_rx)
 void uart_handle(Robot_Typedef* robot){
 	if(flag_cpltReceive){
 		flag_cpltReceive = 0;
-		
+		int8_t speed_left = 0;
+		int8_t speed_right = 0;
+		uint8_t state = 0;
+		uint8_t servo_number[SERVO_NUMER] = {0};
 		uint8_t index = 0;
 		char *token = strtok((char *)uart_buff, " ");
 		while (token != NULL)
@@ -57,7 +56,11 @@ void uart_handle(Robot_Typedef* robot){
 			token = strtok(NULL, " ");
 		}
 
-		if(!response_uart(argv, &speed_left, &speed_right, &state)) return;
+		if(!response_uart(argv, &speed_left, &speed_right, &state, servo_number)) return;
+		
+		for(uint8_t i=0; i<SERVO_NUMER; i++){
+			if(servo_number[i]) Servo_Set(servo_list[i], 90);
+		}
 		
 		if(state) robot->state = ROBOT_RUN;
 		else robot->state = ROBOT_STOP;

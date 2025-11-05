@@ -34,4 +34,5 @@ ros_fpt_project\robot.o: ../Encoder_AS5600/as5600.h
 ros_fpt_project\robot.o: ../Core/Inc/main.h
 ros_fpt_project\robot.o: ../I2C/i2c.h
 ros_fpt_project\robot.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+ros_fpt_project\robot.o: ../Servo/servo.h
 ros_fpt_project\robot.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

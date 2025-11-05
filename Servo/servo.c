@@ -1,4 +1,7 @@
- #include "servo.h"
+#include "servo.h"
+
+Servo_TypeDef* servo_list[SERVO_NUMER];
+static uint8_t servo_index = 0;
 
 uint32_t map(uint32_t x, uint32_t in_min, uint32_t in_max, uint32_t out_min, uint32_t out_max){
 	return ((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
@@ -32,5 +35,6 @@ void Servo_Init(Servo_TypeDef *servo, TIM_HandleTypeDef* htim, uint32_t channel)
 	servo->Channel = channel;
 	servo->Angle = 0;
 	htim->Instance->ARR = 20000 - 1;
+	servo_list[servo_index++] = servo;
 	HAL_TIM_PWM_Start(servo->htim, servo->Channel);
 }	
