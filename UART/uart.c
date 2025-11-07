@@ -47,7 +47,8 @@ void uart_handle(Robot_Typedef* robot){
 		int8_t speed_left = 0;
 		int8_t speed_right = 0;
 		uint8_t state = 0;
-		uint8_t servo_number[SERVO_NUMER] = {0};
+		uint8_t servo_flag_1;
+		uint8_t servo_flag_2;
 		uint8_t index = 0;
 		char *token = strtok((char *)uart_buff, " ");
 		while (token != NULL)
@@ -56,10 +57,18 @@ void uart_handle(Robot_Typedef* robot){
 			token = strtok(NULL, " ");
 		}
 
-		if(!response_uart(argv, &speed_left, &speed_right, &state, servo_number)) return;
+		if(!response_uart(argv, &speed_left, &speed_right, &state, &servo_flag_1, &servo_flag_2)) return;
 		
-		for(uint8_t i=0; i<SERVO_NUMER; i++){
-			if(servo_number[i]) Servo_Set(servo_list[i], 90);
+		if(servo_flag_1){
+			robot->servo1->state = SERVO_OPEN;
+		}else{
+			robot->servo1->state = SERVO_CLOSE;
+		}
+		
+		if(servo_flag_2){
+			robot->servo2->state = SERVO_OPEN;
+		}else{
+			robot->servo2->state = SERVO_CLOSE;
 		}
 		
 		if(state) robot->state = ROBOT_RUN;

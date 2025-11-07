@@ -131,6 +131,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 		sensor_left.distance_m, sensor_half_left.distance_m, sensor_half_right.distance_m, sensor_right.distance_m);
 	}
 }
+
+
 /* USER CODE END 0 */
 
 /**
@@ -189,25 +191,25 @@ int main(void)
 	i2c_soft_init(&soft_i2c_encoder_right, SOFT_I2C3_SCL_GPIO_Port, SOFT_I2C3_SCL_Pin, SOFT_I2C3_SDA_GPIO_Port, SOFT_I2C3_SDA_Pin);
 	
 	// Init Distance Sensor VL53L0X
-	if(!vl53l0x_init(&sensor_left, &soft_i2c_distance, XSHUT_SENSOR_LEFT_GPIO_Port, XSHUT_SENSOR_LEFT_Pin, LEFT, 0)){
+	if(!vl53l0x_init(&sensor_left, &soft_i2c_distance, XSHUT_SENSOR_LEFT_GPIO_Port, XSHUT_SENSOR_LEFT_Pin, LEFT, -30)){
 		flag_error = 3;
 		transmit("Distance Sensor Front Init Fail!\n");
 		Error_Handler();
 	}
 	flag_error = 0;
-	if(!vl53l0x_init(&sensor_half_left, &soft_i2c_distance, XSHUT_SENSOR_HALF_LEFT_GPIO_Port, XSHUT_SENSOR_HALF_LEFT_Pin, RIGHT, 0)){
+	if(!vl53l0x_init(&sensor_half_left, &soft_i2c_distance, XSHUT_SENSOR_HALF_LEFT_GPIO_Port, XSHUT_SENSOR_HALF_LEFT_Pin, HALF_LEFT, 0)){
 		flag_error = 4;
 		transmit("Distance Sensor Behind Init Fail!\n");
 		Error_Handler();
 	}
 	flag_error = 0;
-	if(!vl53l0x_init(&sensor_half_right, &soft_i2c_distance, XSHUT_SENSOR_HALF_RIGHT_GPIO_Port, XSHUT_SENSOR_HALF_RIGHT_Pin, HALF_LEFT, 0)){
+	if(!vl53l0x_init(&sensor_half_right, &soft_i2c_distance, XSHUT_SENSOR_HALF_RIGHT_GPIO_Port, XSHUT_SENSOR_HALF_RIGHT_Pin, HALF_RIGHT, -20)){
 		flag_error = 5;
 		transmit("Distance Sensor Left Init Fail!\n");
 		Error_Handler();
 	}
 	flag_error = 0;
-	if(!vl53l0x_init(&sensor_right, &soft_i2c_distance, XSHUT_SENSOR_RIGHT_GPIO_Port, XSHUT_SENSOR_RIGHT_Pin, HALF_RIGHT, 0)){
+	if(!vl53l0x_init(&sensor_right, &soft_i2c_distance, XSHUT_SENSOR_RIGHT_GPIO_Port, XSHUT_SENSOR_RIGHT_Pin, RIGHT, 0)){
 		flag_error = 6;
 		transmit("Distance Sensor Right Init Fail!\n");
 		Error_Handler();
@@ -216,7 +218,7 @@ int main(void)
 	// Init Servo
 	Servo_Init(&servo1, &htim4, TIM_CHANNEL_1);
 	Servo_Init(&servo2, &htim4, TIM_CHANNEL_2);
-
+	Servo_Set(&servo2, 30);
 	// Init Encoder
 	while(AS5600_Init(&encoder_left, &soft_i2c_encoder_left, AS5600_I2C_SLAVE_ADDRESS)  != AS5600_OK){
 		flag_error = 7;
@@ -232,7 +234,7 @@ int main(void)
 	Stepper_Init(&motor_right, &htim2, TIM_CHANNEL_1, &encoder_right, Motor_Right_DIR_GPIO_Port, Motor_Right_DIR_Pin, Motor_Right_EN_GPIO_Port, Motor_Right_EN_Pin);
 	
 	// Init Robot
-	robot_init(&robot, servo_list, &motor_left, &motor_right);
+	robot_init(&robot, &servo1, &servo2, &motor_left, &motor_right);
 	
 	// Init Periph System
 	HAL_TIM_Base_Start_IT(&htim3);
@@ -242,9 +244,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-		
+  while (1){
+		Control_Servo(&robot);
 		if(!vl53l0x_read_all_sensor()){
 			if(list_distance_sensor[idx] != NULL){
 				switch(list_distance_sensor[idx]->position){
