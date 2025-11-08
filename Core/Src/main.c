@@ -191,30 +191,26 @@ int main(void)
 	i2c_soft_init(&soft_i2c_encoder_right, SOFT_I2C3_SCL_GPIO_Port, SOFT_I2C3_SCL_Pin, SOFT_I2C3_SDA_GPIO_Port, SOFT_I2C3_SDA_Pin);
 	
 	// Init Distance Sensor VL53L0X
+	if(!vl53l0x_init(&sensor_right, &soft_i2c_distance, XSHUT_SENSOR_RIGHT_GPIO_Port, XSHUT_SENSOR_RIGHT_Pin, RIGHT, -50)){
+		flag_error = 6;
+		transmit("Distance Sensor Right Init Fail!\n");
+		Error_Handler();
+	}
 	if(!vl53l0x_init(&sensor_left, &soft_i2c_distance, XSHUT_SENSOR_LEFT_GPIO_Port, XSHUT_SENSOR_LEFT_Pin, LEFT, -30)){
 		flag_error = 3;
 		transmit("Distance Sensor Front Init Fail!\n");
 		Error_Handler();
 	}
-	flag_error = 0;
 	if(!vl53l0x_init(&sensor_half_left, &soft_i2c_distance, XSHUT_SENSOR_HALF_LEFT_GPIO_Port, XSHUT_SENSOR_HALF_LEFT_Pin, HALF_LEFT, 0)){
 		flag_error = 4;
 		transmit("Distance Sensor Behind Init Fail!\n");
 		Error_Handler();
 	}
-	flag_error = 0;
 	if(!vl53l0x_init(&sensor_half_right, &soft_i2c_distance, XSHUT_SENSOR_HALF_RIGHT_GPIO_Port, XSHUT_SENSOR_HALF_RIGHT_Pin, HALF_RIGHT, -20)){
 		flag_error = 5;
 		transmit("Distance Sensor Left Init Fail!\n");
 		Error_Handler();
-	}
-	flag_error = 0;
-	if(!vl53l0x_init(&sensor_right, &soft_i2c_distance, XSHUT_SENSOR_RIGHT_GPIO_Port, XSHUT_SENSOR_RIGHT_Pin, RIGHT, 0)){
-		flag_error = 6;
-		transmit("Distance Sensor Right Init Fail!\n");
-		Error_Handler();
-	}
-	
+	}	
 	// Init Servo
 	Servo_Init(&servo1, &htim4, TIM_CHANNEL_1);
 	Servo_Init(&servo2, &htim4, TIM_CHANNEL_2);

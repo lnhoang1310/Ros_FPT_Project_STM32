@@ -22,5 +22,6 @@ bool i2c_soft_read_addr8_data16(Soft_I2C_TypeDef *i2c, uint8_t slave_addr, uint8
 bool i2c_soft_read_addr8_data32(Soft_I2C_TypeDef *i2c, uint8_t slave_addr, uint8_t reg_addr, uint32_t *data);
 bool i2c_soft_read_addr8_bytes(Soft_I2C_TypeDef *i2c, uint8_t slave_addr, uint8_t reg_addr, uint8_t *data, uint8_t len);
 bool i2c_soft_write_addr8_bytes(Soft_I2C_TypeDef *i2c, uint8_t slave_addr, uint8_t reg_addr, uint8_t *data, uint8_t len);
+void i2c_soft_delay(void);
 
 #endif

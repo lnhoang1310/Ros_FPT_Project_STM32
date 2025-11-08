@@ -40,26 +40,26 @@ void Control_Servo(Robot_Typedef* robot){
 	if(robot->servo1->state == SERVO_OPEN && robot->servo1->Angle != SERVO1_ANGLE_OPEN){
 		for(uint8_t i=robot->servo1->Angle; i <= SERVO1_ANGLE_OPEN; i++){
 			Servo_Set(robot->servo1, i);
-			HAL_Delay(1);
+			HAL_Delay(5);
 		}
 	}
 	if(robot->servo1->state == SERVO_CLOSE && robot->servo1->Angle != SERVO1_ANGLE_CLOSE){
 		for(uint8_t i=robot->servo1->Angle; i>= SERVO1_ANGLE_CLOSE; i--){
 			Servo_Set(robot->servo1, i);
-			HAL_Delay(1);
+			HAL_Delay(5);
 		}
 	}
 	
 	if(robot->servo2->state == SERVO_OPEN && robot->servo2->Angle != SERVO2_ANGLE_OPEN){
 		for(uint8_t i=robot->servo2->Angle; i >= SERVO2_ANGLE_OPEN; i--){
 			Servo_Set(robot->servo2, i);
-			HAL_Delay(1);
+			HAL_Delay(5);
 		}
 	}
 	if(robot->servo2->state == SERVO_CLOSE && robot->servo2->Angle != SERVO2_ANGLE_CLOSE){
 		for(uint8_t i=robot->servo2->Angle; i<= SERVO2_ANGLE_CLOSE; i++){
 			Servo_Set(robot->servo2, i);
-			HAL_Delay(1);
+			HAL_Delay(5);
 		}
 	}
 }

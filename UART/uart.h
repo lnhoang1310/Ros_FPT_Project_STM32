@@ -3,7 +3,7 @@
 #include "stm32f1xx.h"
 #include "robot.h"
 
-#define UART_BUFFER_SIZE 10
+#define UART_BUFFER_SIZE 50
 
 extern uint8_t flag_cpltReceive;
 extern float setpoint_left;

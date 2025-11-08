@@ -1,8 +1,9 @@
 
 #include "i2c.h"
 
-static void i2c_soft_delay(void){
-    for(volatile uint32_t i = 0; i < I2C_SOFT_DELAY_US * (SystemCoreClock / 2000000); i++);
+void i2c_soft_delay(void){
+//    for(volatile uint32_t i = 0; i < I2C_SOFT_DELAY_US * (SystemCoreClock / 2000000); i++);
+	for(volatile uint32_t i = 0; i < 5; i++);
 }
 
 static void i2c_soft_scl_high(Soft_I2C_TypeDef *i2c){
