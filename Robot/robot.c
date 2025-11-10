@@ -2,6 +2,9 @@
 #include "main.h"
 #include "math.h"
 
+uint32_t time_delay_servo_1 = 0;
+uint32_t time_delay_servo_2 = 0;
+
 void robot_init(Robot_Typedef *robot, Servo_TypeDef* servo_1, Servo_TypeDef* servo_2, StepperMotor *_motorLeft, StepperMotor *_motorRight)
 {
 	robot->servo1 = servo_1;
@@ -40,26 +43,29 @@ void Control_Servo(Robot_Typedef* robot){
 	if(robot->servo1->state == SERVO_OPEN && robot->servo1->Angle != SERVO1_ANGLE_OPEN){
 		for(uint8_t i=robot->servo1->Angle; i <= SERVO1_ANGLE_OPEN; i++){
 			Servo_Set(robot->servo1, i);
-			HAL_Delay(5);
+			HAL_Delay(2);
 		}
+					
 	}
 	if(robot->servo1->state == SERVO_CLOSE && robot->servo1->Angle != SERVO1_ANGLE_CLOSE){
 		for(uint8_t i=robot->servo1->Angle; i>= SERVO1_ANGLE_CLOSE; i--){
 			Servo_Set(robot->servo1, i);
-			HAL_Delay(5);
+			HAL_Delay(2);
 		}
+		
 	}
 	
 	if(robot->servo2->state == SERVO_OPEN && robot->servo2->Angle != SERVO2_ANGLE_OPEN){
 		for(uint8_t i=robot->servo2->Angle; i >= SERVO2_ANGLE_OPEN; i--){
 			Servo_Set(robot->servo2, i);
-			HAL_Delay(5);
+			HAL_Delay(2);
 		}
+		
 	}
 	if(robot->servo2->state == SERVO_CLOSE && robot->servo2->Angle != SERVO2_ANGLE_CLOSE){
 		for(uint8_t i=robot->servo2->Angle; i<= SERVO2_ANGLE_CLOSE; i++){
 			Servo_Set(robot->servo2, i);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 	}
 }
