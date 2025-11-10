@@ -1,5 +1,5 @@
 #ifndef VL53L0X_H
-#define VL53L0x_H
+#define VL53L0X_H
 
 #include <stdbool.h>
 #include "stm32f1xx_hal.h"
