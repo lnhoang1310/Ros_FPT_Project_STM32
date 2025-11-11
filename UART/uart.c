@@ -33,7 +33,7 @@ void uart_receive_data(uint8_t data_rx)
 		if (data_rx == ' ' || (data_rx >= '0' && data_rx <= '9') || data_rx == '-')
 		{
 			uart_buff[buffer_index++] = data_rx;
-			if(buffer_index >= UART_BUFFER_SIZE) buffer_index = 0;
+			if(buffer_index >= UART_BUFFER_SIZE - 2) buffer_index = 0;
 		}else{	
 			flag_data_error = 1;
 			buffer_index = 0;
